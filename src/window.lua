@@ -1,6 +1,6 @@
 local Window = {}
 
-function Window.constructor() 
+function Window.load() 
   love.window.setMode(1024,768)
   
   Window.largeur = love.graphics.getWidth()

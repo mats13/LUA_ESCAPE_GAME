@@ -12,8 +12,8 @@ local myHero = require("hero")
 -- ** FONCTIONS UTILISATEUR **
 -- *******************************
 function initialise()  
-  myWindow.constructor()
-  myHero.constructor()
+  myWindow.load()
+  myHero.load()
   myHero.setPosition(myWindow.largeur/2, myWindow.hauteur/2)    
 end
 

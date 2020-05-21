@@ -18,9 +18,6 @@ local myGame = require("game")
 local keyPressed = ""
 
 
--- On charge le jeu qui lui chargera le héro
--- local myGame = require("game")
-
 function love.load()
   myGame.load()
   
@@ -41,5 +38,6 @@ end
 
 function love.keypressed(key)  
   keyPressed = key
+  print(keyPressed)
 end
   
