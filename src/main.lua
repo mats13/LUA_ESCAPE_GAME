@@ -30,7 +30,13 @@ function love.update(dt)
 end
 
 function love.draw()  
+  
+  -- love.graphics.push()
+    
+  -- love.graphics.scale(2,2)
   myGame.draw()
+  
+  -- love.graphics.pop()
 
 end
 

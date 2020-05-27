@@ -29,7 +29,7 @@ function initialise()
   ]]
   
   local objSprite = CSprite.new();
-  objSprite:setImage("images/personnage-up-down.png")
+  objSprite:setImage("images/prisonnier-up-down.png")
   -- objSprite:addQuadAnim("WALK_UP", 0, 0, 20, 20)
   objSprite:addQuadAnim(1, 0, 0, 20, 20)
   objSprite:addQuadAnim(1, 20, 0, 20, 20)
@@ -39,14 +39,12 @@ function initialise()
   objSprite:addQuadAnim(2, 0, 20, 20, 20)
   objSprite:addQuadAnim(2, 20, 20, 20, 20)
   objSprite:addQuadAnim(2, 40, 20, 20, 20)
-  objSprite:addQuadAnim(2, 60, 20, 20, 20)
-  
+  objSprite:addQuadAnim(2, 60, 20, 20, 20)  
   
   objSprite:addQuadAnim(3, 0, 40, 20, 20)
   objSprite:addQuadAnim(3, 20, 40, 20, 20)
   objSprite:addQuadAnim(3, 40, 40, 20, 20)
-  objSprite:addQuadAnim(3, 60, 40, 20, 20)
-  
+  objSprite:addQuadAnim(3, 60, 40, 20, 20)  
   
   objSprite:addQuadAnim(4, 0, 60, 20, 20)
   objSprite:addQuadAnim(4, 20, 60, 20, 20)
