@@ -14,7 +14,8 @@ function CSprite.new()
   print("CSprite.new() / Création d'un instance de CSprite")
   
   local objSprite = {}
-  objSprite.x = 4
+  objSprite.x = 0
+  objSprite.y = 0
   objSprite.image = nil
   objSprite.framesAnimMatrix = {}
   -- Le numéro d'animation courant
@@ -43,6 +44,7 @@ function CSprite:affiche()
   
   print("Affichage")
   print("X : "..self.x)
+  print("test : "..self.test)
   print("nb animations framesAnimMatrix : "..#self.framesAnimMatrix)
   print("nb frame de animation 1 : "..#self.framesAnimMatrix[1])
   -- print("image : "..self.image)
