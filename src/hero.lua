@@ -78,8 +78,6 @@ function Hero.draw()
   local idFrameEntier = math.floor(Hero.objSprite.idFrameAVirguleCourant)
   -- Affichage du Hero
   love.graphics.draw(Hero.objSprite.image, Hero.objSprite.framesAnimMatrix[Hero.objSprite.idAnimCourant][idFrameEntier], Hero.x, Hero.y, 0, 1, 1, Hero.width/2, Hero.height/2)
-  -- love.graphics.draw(Hero.image, Hero.frames[idFrame], Hero.x, Hero.y)
-  -- love.graphics.draw(Hero.image, Hero.x, Hero.y)
   
 end
 

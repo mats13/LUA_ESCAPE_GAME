@@ -19,10 +19,11 @@ function initialise()
   
   local objSpriteFactory  = CSpriteFactory.new()
   -- local objMaton          = objSpriteFactory:createMaton()
-  local objPrisonnier     = objSpriteFactory:createSpritePrisonnier()
+  local objSpritePrisonnier     = objSpriteFactory:createSpritePrisonnier()
   
+  objSpritePrisonnier:affiche()
   
-  -- myHero.load(objPrisonnier)
+  myHero.load(objSpritePrisonnier)
   myHero.setPosition(myWindow.largeur/2, myWindow.hauteur/2)    
 end
 

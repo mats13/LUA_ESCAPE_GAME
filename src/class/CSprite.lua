@@ -44,7 +44,7 @@ function CSprite:affiche()
   
   print("Affichage")
   print("X : "..self.x)
-  print("test : "..self.test)
+  -- print("test : "..self.test)
   print("nb animations framesAnimMatrix : "..#self.framesAnimMatrix)
   print("nb frame de animation 1 : "..#self.framesAnimMatrix[1])
   -- print("image : "..self.image)

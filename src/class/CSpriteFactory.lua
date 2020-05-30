@@ -26,33 +26,32 @@ function CSpriteFactory.new()
 end
 
 function CSpriteFactory:createSpritePrisonnier()
-  local objPrisonnier = CSprite.new()
-  objPrisonnier:setImage("images/prisonnier-up-down.png")
+  local objSpritePrisonnier = CSpriteFactory:createSprite("images/prisonnier-up-down.png")
   -- self.x = 5
-  objPrisonnier.x = 19
+  objSpritePrisonnier.x = 19
   
-  return objPrisonnier
+  return objSpritePrisonnier
 end
 
 function CSpriteFactory:createSpriteMaton()
-  local objMaton = self.createSprite("images/maton-up-down.png")
+  local objSpriteMaton = CSpriteFactory:createSprite("images/maton-up-down.png")
   -- self.x = 5
-  objMaton.x = 18
+  objSpriteMaton.x = 18
   
   
   
-  return objMaton
+  return objSpriteMaton
 end
 
 
--- Méthode locale
-function CSpriteFactory:createSprite(image)
+-- LOCAL METHOD
+function CSpriteFactory:createSprite(psCompleteImageFileName)
   local objSprite = CSprite.new()
   -- self.x = 5
   objSprite.x = 18
   
   
-  objSprite:setImage(image)
+  objSprite:setImage(psCompleteImageFileName)
   -- objSprite:addQuadAnim("WALK_UP", 0, 0, 20, 20)
   objSprite:addQuadAnim(1, 0, 0, 20, 20)
   objSprite:addQuadAnim(1, 20, 0, 20, 20)
