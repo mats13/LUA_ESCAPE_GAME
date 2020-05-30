@@ -12,7 +12,8 @@ local CSpriteFactory = {}
 local cspriteFactory_mt = { __index = CSpriteFactory }
 
 
-local CSprite = require("class/CSprite")
+local CSprite     = require("class/CSprite")
+local TYPE_SPRITE = require("enum/ETypeSprite")
 
 -- Notre méthode Factory qui renvoie une fonction particulière de lua
 function CSpriteFactory.new()
@@ -27,18 +28,16 @@ end
 
 function CSpriteFactory:createSpritePrisonnier()
   local objSpritePrisonnier = CSpriteFactory:createSprite("images/prisonnier-up-down.png")
-  -- self.x = 5
-  objSpritePrisonnier.x = 19
+  -- On surcharge
+  objSpritePrisonnier.typeSprite = TYPE_SPRITE.PRISONNIER
   
   return objSpritePrisonnier
 end
 
 function CSpriteFactory:createSpriteMaton()
   local objSpriteMaton = CSpriteFactory:createSprite("images/maton-up-down.png")
-  -- self.x = 5
-  objSpriteMaton.x = 18
-  
-  
+  -- On surcharge
+  objSpriteMaton.typeSprite = TYPE_SPRITE.MATON  
   
   return objSpriteMaton
 end
