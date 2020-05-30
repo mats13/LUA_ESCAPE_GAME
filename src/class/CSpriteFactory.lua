@@ -17,7 +17,7 @@ local CSprite = require("class/CSprite")
 -- Notre méthode Factory qui renvoie une fonction particulière de lua
 function CSpriteFactory.new()
   
-  print("CSprite.new() / Création d'un instance de CSprite")
+  print("CSpriteFactory.new() / Création d'un instance de CSpriteFactory")
   
   local objSpriteFactory = {}
   objSpriteFactory.x = 0

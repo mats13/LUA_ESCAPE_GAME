@@ -4,9 +4,15 @@ local Game = {}
 
 -- * MODULES EXTERNES *
 local myWindow = require("window")
-local myHero = require("hero")
+-- local myHero = require("hero")
 local CSpriteFactory = require("class/CSpriteFactory")
+local CPrisonnier = require("class/CPrisonnier")
 -- local CSprite = require("class/CSprite")
+
+-- ****************************
+-- ** VARIABLES GLOBALES **
+-- ****************************
+local objPrisonnier = nil
 
 
 -- *******************************
@@ -18,13 +24,12 @@ function initialise()
   myWindow.load()
   
   local objSpriteFactory  = CSpriteFactory.new()
-  -- local objMaton          = objSpriteFactory:createMaton()
   local objSpritePrisonnier     = objSpriteFactory:createSpritePrisonnier()
   
   objSpritePrisonnier:affiche()
   
-  myHero.load(objSpritePrisonnier)
-  myHero.setPosition(myWindow.largeur/2, myWindow.hauteur/2)    
+  objPrisonnier = CPrisonnier.new(objSpritePrisonnier)
+  objPrisonnier:setPosition(myWindow.largeur/2, myWindow.hauteur/2)    
 end
 
 function Game.load()  
@@ -32,14 +37,12 @@ function Game.load()
 end
 
 function Game.update(dt)
-  myHero.update(dt)
+  objPrisonnier:update(dt)
 end
 
-function Game.draw()
+function Game.draw()  
   
-  -- love.graphics.print("keypressed = "..keyPressed, 0, 0)  
-  
-  myHero.draw()
+  objPrisonnier:draw()
 end
 
 return Game
