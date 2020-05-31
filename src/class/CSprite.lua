@@ -13,22 +13,29 @@ function CSprite.new()
   
   print("CSprite.new() / Création d'un instance de CSprite")
   
-  local objSprite = {}
-  objSprite.x = 0
-  objSprite.y = 0
-  objSprite.image = nil
-  objSprite.framesAnimMatrix = {}
+  local objSprite                   = {}
+  objSprite.x                       = 0
+  objSprite.y                       = 0
+  objSprite.width                   = 0
+  objSprite.height                  = 0
+  objSprite.image                   = nil
+  objSprite.framesAnimMatrix        = {}
   -- Le numéro d'animation courant
-  objSprite.idAnimCourant = 1
+  objSprite.idAnimCourant           = 1
   -- le numéro de frame courant (mais pas entier)
-  objSprite.idFrameAVirguleCourant = 1
+  objSprite.idFrameAVirguleCourant  = 1
+  
   
   return setmetatable( objSprite, csprite_mt)
 end
 
 function CSprite:setImage(nomCompletFichier)
-  self.x = 5
   self.image = love.graphics.newImage(nomCompletFichier)
+end
+
+function CSprite:setPosition(pX, pY)
+  self.x = pX
+  self.y = pY
 end
 
 function CSprite:addQuadAnim(idAnim, pX, pY, pWidth, pHeight)
@@ -44,8 +51,9 @@ function CSprite:affiche()
   
   print("Affichage")
   print("X : "..self.x)
-  print("type sprite : "..self.typeSprite)
-  -- print("test : "..self.test)
+  print("Y : "..self.y)
+  print("Width : "..self.width)
+  print("Height : "..self.height)
   print("nb animations framesAnimMatrix : "..#self.framesAnimMatrix)
   print("nb frame de animation 1 : "..#self.framesAnimMatrix[1])
   -- print("image : "..self.image)

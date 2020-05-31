@@ -12,8 +12,10 @@ local CSpriteFactory = {}
 local cspriteFactory_mt = { __index = CSpriteFactory }
 
 
-local CSprite     = require("class/CSprite")
-local TYPE_SPRITE = require("enum/ETypeSprite")
+local CSprite               = require("class/CSprite")
+local TYPE_SPRITE           = require("enum/ETypeSprite")
+local DIRECTION_ANIMATION   = require("enum/EDirectionAnim")
+local STATE_MATON           = require("enum/EStateMaton")
 
 -- Notre méthode Factory qui renvoie une fonction particulière de lua
 function CSpriteFactory.new()
@@ -37,7 +39,11 @@ end
 function CSpriteFactory:createSpriteMaton()
   local objSpriteMaton = CSpriteFactory:createSprite("images/maton-up-down.png")
   -- On surcharge
-  objSpriteMaton.typeSprite = TYPE_SPRITE.MATON  
+  objSpriteMaton.typeSprite               = TYPE_SPRITE.MATON    
+  objSpriteMaton.speed                    = 0
+  objSpriteMaton.target                   = nil
+  objSpriteMaton.rangeDetection           = 0
+  objSpriteMaton.state                    = STATE_MATON.NONE
   
   return objSpriteMaton
 end
@@ -51,26 +57,30 @@ function CSpriteFactory:createSprite(psCompleteImageFileName)
   
   
   objSprite:setImage(psCompleteImageFileName)
-  -- objSprite:addQuadAnim("WALK_UP", 0, 0, 20, 20)
-  objSprite:addQuadAnim(1, 0, 0, 20, 20)
-  objSprite:addQuadAnim(1, 20, 0, 20, 20)
-  objSprite:addQuadAnim(1, 40, 0, 20, 20)
-  objSprite:addQuadAnim(1, 60, 0, 20, 20)
   
-  objSprite:addQuadAnim(2, 0, 20, 20, 20)
-  objSprite:addQuadAnim(2, 20, 20, 20, 20)
-  objSprite:addQuadAnim(2, 40, 20, 20, 20)
-  objSprite:addQuadAnim(2, 60, 20, 20, 20)  
+  -- On déduit de l'image la largeur et hauteur du sprite
+  objSprite.width   = 20
+  objSprite.height  = 20
   
-  objSprite:addQuadAnim(3, 0, 40, 20, 20)
-  objSprite:addQuadAnim(3, 20, 40, 20, 20)
-  objSprite:addQuadAnim(3, 40, 40, 20, 20)
-  objSprite:addQuadAnim(3, 60, 40, 20, 20)  
+  objSprite:addQuadAnim(DIRECTION_ANIMATION.WALK_DOWN, 0, 0, 20, 20)
+  objSprite:addQuadAnim(DIRECTION_ANIMATION.WALK_DOWN, 20, 0, 20, 20)
+  objSprite:addQuadAnim(DIRECTION_ANIMATION.WALK_DOWN, 40, 0, 20, 20)
+  objSprite:addQuadAnim(DIRECTION_ANIMATION.WALK_DOWN, 60, 0, 20, 20)
   
-  objSprite:addQuadAnim(4, 0, 60, 20, 20)
-  objSprite:addQuadAnim(4, 20, 60, 20, 20)
-  objSprite:addQuadAnim(4, 40, 60, 20, 20)
-  objSprite:addQuadAnim(4, 60, 60, 20, 20)
+  objSprite:addQuadAnim(DIRECTION_ANIMATION.WALK_UP, 0, 20, 20, 20)
+  objSprite:addQuadAnim(DIRECTION_ANIMATION.WALK_UP, 20, 20, 20, 20)
+  objSprite:addQuadAnim(DIRECTION_ANIMATION.WALK_UP, 40, 20, 20, 20)
+  objSprite:addQuadAnim(DIRECTION_ANIMATION.WALK_UP, 60, 20, 20, 20)  
+  
+  objSprite:addQuadAnim(DIRECTION_ANIMATION.WALK_LEFT, 0, 40, 20, 20)
+  objSprite:addQuadAnim(DIRECTION_ANIMATION.WALK_LEFT, 20, 40, 20, 20)
+  objSprite:addQuadAnim(DIRECTION_ANIMATION.WALK_LEFT, 40, 40, 20, 20)
+  objSprite:addQuadAnim(DIRECTION_ANIMATION.WALK_LEFT, 60, 40, 20, 20)  
+  
+  objSprite:addQuadAnim(DIRECTION_ANIMATION.WALK_RIGHT, 0, 60, 20, 20)
+  objSprite:addQuadAnim(DIRECTION_ANIMATION.WALK_RIGHT, 20, 60, 20, 20)
+  objSprite:addQuadAnim(DIRECTION_ANIMATION.WALK_RIGHT, 40, 60, 20, 20)
+  objSprite:addQuadAnim(DIRECTION_ANIMATION.WALK_RIGHT, 60, 60, 20, 20)
   
   return objSprite
 end
