@@ -18,7 +18,7 @@ local CSpriteFactory      = require("class/CSpriteFactory")
 -- Notre méthode Factory qui renvoie une fonction particulière de lua
 function CPrisonnier.new(pobjSprite)
   
-  print("CPrisonnier.new() / Création d'un instance de CSprite")
+  -- print("CPrisonnier.new() / Création d'un instance de CSprite")
   
   local objPrisonnier = {}
   objPrisonnier.objSprite = pobjSprite
@@ -77,7 +77,7 @@ function CPrisonnier:update(dt)
     end
   end
   
-  -- * GESTION des Fleches de contrôle
+  -- * GESTION des Fleches de contrôle et CALCUL des novelles COORDONNEES
   if love.keyboard.isDown("up") then
       -- L'id d'animation que l'on lance
       self.objSprite.idAnimCourant = DIRECTION_ANIMATION.WALK_UP

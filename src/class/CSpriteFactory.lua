@@ -15,12 +15,11 @@ local cspriteFactory_mt = { __index = CSpriteFactory }
 local CSprite               = require("class/CSprite")
 local TYPE_SPRITE           = require("enum/ETypeSprite")
 local DIRECTION_ANIMATION   = require("enum/EDirectionAnim")
-local STATE_MATON           = require("enum/EStateMaton")
 
 -- Notre méthode Factory qui renvoie une fonction particulière de lua
 function CSpriteFactory.new()
   
-  print("CSpriteFactory.new() / Création d'un instance de CSpriteFactory")
+  -- print("CSpriteFactory.new() / Création d'un instance de CSpriteFactory")
   
   local objSpriteFactory = {}
   objSpriteFactory.x = 0
@@ -39,12 +38,8 @@ end
 function CSpriteFactory:createSpriteMaton()
   local objSpriteMaton = CSpriteFactory:createSprite("images/maton-up-down.png")
   -- On surcharge
-  objSpriteMaton.typeSprite               = TYPE_SPRITE.MATON    
-  objSpriteMaton.speed                    = 0
-  objSpriteMaton.target                   = nil
-  objSpriteMaton.rangeDetection           = 0
-  objSpriteMaton.state                    = STATE_MATON.NONE
-  
+  objSpriteMaton.typeSprite = TYPE_SPRITE.MATON
+    
   return objSpriteMaton
 end
 
@@ -52,8 +47,6 @@ end
 -- LOCAL METHOD
 function CSpriteFactory:createSprite(psCompleteImageFileName)
   local objSprite = CSprite.new()
-  -- self.x = 5
-  objSprite.x = 18
   
   
   objSprite:setImage(psCompleteImageFileName)

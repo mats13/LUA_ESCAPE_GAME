@@ -12,16 +12,19 @@ local CMaton = {}
 local cmaton_mt = { __index = CMaton }
 
 
--- local DIRECTION_ANIMATION = require("enum/EDirectionAnim")
 local CSpriteFactory  = require("class/CSpriteFactory")
+local TYPE_SPRITE     = require("enum/ETypeSprite")
+local STATE_MATON     = require("enum/EStateMaton")
+
+-- Returns the angle between two points.
+function math.angle(x1,y1, x2,y2) return math.atan2(y2-y1, x2-x1) end
 
 -- Notre méthode Factory qui renvoie une fonction particulière de lua
 function CMaton.new()
   
-  print("CPrisonnier.new() / Création d'un instance de CSprite")
+  -- print("CPrisonnier.new() / Création d'un instance de CSprite")
   
   local objMaton = {}
-  -- objMaton.objSprite = pobjSprite
   
   return setmetatable( objMaton, cmaton_mt)
 end
@@ -36,21 +39,39 @@ end
 
 function CMaton:createNew(pList, pWindow)
   local objSpriteFactory  = CSpriteFactory.new()
-  local objSpriteMaton    = objSpriteFactory:createSpriteMaton()
   
   local objMaton          = CMaton.new()
   objMaton.objSprite      = objSpriteFactory:createSpriteMaton()
   
+  -- On SURCHARGE le sprite des MATONS car pas tous les sprites ont besoin de ces variables
+  objMaton.objSprite.speed                    = 0
+  objMaton.objSprite.angleRad                 = 0
+  objMaton.objSprite.vx                       = 0
+  objMaton.objSprite.vy                       = 0
+  -- Le MATON
+  objMaton.target                             = nil
+  objMaton.rangeDetection                     = 0
+  objMaton.state                              = STATE_MATON.NONE
+  
   objMaton:addToList(pList)
   
-  -- On le place au hasard dans la partie haute de la fenêtre  
-  objMaton.speed = math.random(5,50) / 200
-  objMaton.range = math.random(10, 150)
-  objMaton.target = nil
+  -- On le place au hasard DE BASE dans la partie haute de la fenêtre, vitesse au hasard, angle au hasard  
   objMaton:setPosition(
     math.random(10, pWindow.largeur-10),
     math.random(10, (pWindow.hauteur/2)-10)
   )    
+  objMaton.objSprite.speed = math.random(5,50) / 200
+  objMaton.objSprite.range = math.random(10, 150) -- détecte entre 10 et 150 pixels  
+  -- Angle au hasard entre le point où est le maton et un point au hasard dans tout l'écran
+  local xHasard = math.random(0,pWindow.largeur)
+  local yHasard = math.random(0,pWindow.hauteur)
+  -- print("-----")
+  -- print("objMaton.objSprite.x : "..objMaton.objSprite.x..", objMaton.objSprite.y : "..objMaton.objSprite.y)
+  -- print("xHasard : "..xHasard..", yHasard : "..yHasard)
+  objMaton.objSprite.angleRad = math.angle(objMaton.objSprite.x, objMaton.objSprite.y, xHasard, yHasard)
+  
+  -- print(objMaton.objSprite.angleRad * 360 / math.pi)
+  objMaton.target = nil
   
   return objMaton
 end
@@ -62,6 +83,17 @@ function CMaton:update(dt)
   if self.objSprite.idFrameAVirguleCourant >= #self.objSprite.framesAnimMatrix + 1 then
     self.objSprite.idFrameAVirguleCourant = 1
   end
+  
+  -- * CALCUL des nouvelles COORDONNEES
+  -- nouvelle Vx, Vy
+  self.objSprite.vx = self.objSprite.speed * 2 * 60 * dt * math.cos(self.objSprite.angleRad)
+  self.objSprite.vy = self.objSprite.speed * 2 * 60 * dt * math.sin(self.objSprite.angleRad)
+  -- print("vx : "..self.objSprite.vx..", vy : "..self.objSprite.vy)
+  
+  -- nouvelles coordonées
+  self.objSprite.x = self.objSprite.x + self.objSprite.vx
+  self.objSprite.y = self.objSprite.y + self.objSprite.vy
+  
 end
   
 

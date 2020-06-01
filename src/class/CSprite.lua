@@ -11,7 +11,7 @@ local csprite_mt = { __index = CSprite }
 -- Notre méthode Factory qui renvoie une fonction particulière de lua
 function CSprite.new()
   
-  print("CSprite.new() / Création d'un instance de CSprite")
+  -- print("CSprite.new() / Création d'un instance de CSprite")
   
   local objSprite                   = {}
   objSprite.x                       = 0
